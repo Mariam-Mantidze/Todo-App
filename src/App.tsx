@@ -6,6 +6,7 @@ import Sun from "/images/icon-sun.svg";
 import Moon from "/images/icon-moon.svg";
 import MobileLight from "/images/bg-mobile-light.jpg";
 import Checkbox from "/images/icon-check.svg";
+import DeleteBtn from "/images/icon-cross.svg";
 
 type TodoType = {
   id: number;
@@ -81,7 +82,10 @@ function App() {
                 {todo.title}
               </div>
 
-              <button onClick={() => deleteTodo(todo.id)}>X</button>
+              <div className="btn-container">
+                <img src={DeleteBtn} alt="" />
+                <button onClick={() => deleteTodo(todo.id)}>X</button>
+              </div>
             </SingleTodo>
           ))}
           <SingleTodo>
@@ -180,7 +184,8 @@ const SingleTodo = styled.li<TodoItemProps>`
   line-height: 12px;
   letter-spacing: -0.1666666716337204px;
   text-align: left;
-  color: ${(props) => (props.completed ? "rgba(77, 80, 103, 1)" : "")};
+  color: ${(props) =>
+    props.completed ? "rgba(77, 80, 103, 1)" : "rgba(200, 203, 231, 1)"};
   text-decoration: ${(props) => (props.completed ? "line-through" : "")};
 
   & .container {
@@ -216,6 +221,22 @@ const SingleTodo = styled.li<TodoItemProps>`
         props.completed
           ? "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
           : ""};
+    }
+  }
+
+  & .btn-container {
+    position: relative;
+
+    & button {
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    & img {
+      position: absolute;
+      width: 11.79px;
+      height: 11.79px;
+      top: 2px;
     }
   }
 `;
