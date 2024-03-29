@@ -24,6 +24,16 @@ export default function TodoContainer({ setTodos, todos }) {
     );
     setTodos(newTodos);
   };
+  const clearCompleted = () => {
+    const undoneTodos = todos.filter((todo) => !todo.completed);
+
+    // console.log(completedTodos);
+
+    setTodos([...undoneTodos]);
+  };
+
+  const todoCount = todos.filter((todo) => !todo.completed).length;
+
   return (
     <TodoList>
       {todos.map((todo) => (
@@ -46,8 +56,10 @@ export default function TodoContainer({ setTodos, todos }) {
         </SingleTodo>
       ))}
       <SummaryContainer>
-        <span className="items-left">5 items left</span>
-        <span className="clear-items">Clear Completed</span>
+        <span className="items-left">{todoCount} items left</span>
+        <span onClick={clearCompleted} className="clear-items">
+          Clear Completed
+        </span>
       </SummaryContainer>
     </TodoList>
   );
