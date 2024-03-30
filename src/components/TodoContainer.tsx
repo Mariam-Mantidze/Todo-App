@@ -1,18 +1,34 @@
 import styled from "styled-components";
+import { useState } from "react";
 import Checkbox from "/images/icon-check.svg";
 import DeleteBtn from "/images/icon-cross.svg";
+import FilterContainer from "./FilterContainer";
+import Footer from "./Footer";
 
 interface TodoItemProps {
   completed: boolean;
 }
 
 export default function TodoContainer({ setTodos, todos }) {
+  const [filter, setFilter] = useState("all");
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") {
+      return !todo.completed;
+    } else if (filter === "completed") {
+      return todo.completed;
+    }
+    return true;
+  });
+
+  // function for deleting todo
   const deleteTodo = (todoId: number): void => {
     const newTodos = todos.filter((todo) => todoId !== todo.id);
 
     setTodos([...newTodos]);
   };
 
+  // function for marking todo as completed or not completed
   const markTodo = (todoId: number) => {
     const markedTodo = todos.find((todo) => todoId === todo.id);
 
@@ -24,6 +40,8 @@ export default function TodoContainer({ setTodos, todos }) {
     );
     setTodos(newTodos);
   };
+
+  // function for clearing all the completed todos
   const clearCompleted = () => {
     const undoneTodos = todos.filter((todo) => !todo.completed);
 
@@ -31,37 +49,41 @@ export default function TodoContainer({ setTodos, todos }) {
 
     setTodos([...undoneTodos]);
   };
-
+  // variable for tracking active todos
   const todoCount = todos.filter((todo) => !todo.completed).length;
 
   return (
-    <TodoList>
-      {todos.map((todo) => (
-        <SingleTodo key={todo.id} completed={todo.completed}>
-          <div className="container">
-            <div className="circle"></div>
-            <img src={Checkbox} alt="checkbox" />
-            <input
-              onChange={() => markTodo(todo.id)}
-              type="checkbox"
-              name="completed"
-            />
-            {todo.title}
-          </div>
+    <>
+      <TodoList>
+        {filteredTodos.map((todo) => (
+          <SingleTodo key={todo.id} completed={todo.completed}>
+            <div className="container">
+              <div className="circle"></div>
+              <img src={Checkbox} alt="checkbox" />
+              <input
+                onChange={() => markTodo(todo.id)}
+                type="checkbox"
+                name="completed"
+              />
+              {todo.title}
+            </div>
 
-          <div className="btn-container">
-            <img src={DeleteBtn} alt="" />
-            <button onClick={() => deleteTodo(todo.id)}>X</button>
-          </div>
-        </SingleTodo>
-      ))}
-      <SummaryContainer>
-        <span className="items-left">{todoCount} items left</span>
-        <span onClick={clearCompleted} className="clear-items">
-          Clear Completed
-        </span>
-      </SummaryContainer>
-    </TodoList>
+            <div className="btn-container">
+              <img src={DeleteBtn} alt="" />
+              <button onClick={() => deleteTodo(todo.id)}>X</button>
+            </div>
+          </SingleTodo>
+        ))}
+        <SummaryContainer>
+          <span className="items-left">{todoCount} items left</span>
+          <span onClick={clearCompleted} className="clear-items">
+            Clear Completed
+          </span>
+        </SummaryContainer>
+      </TodoList>
+      <FilterContainer filter={filter} setFilter={setFilter} />
+      <Footer />
+    </>
   );
 }
 

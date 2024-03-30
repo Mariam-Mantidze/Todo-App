@@ -5,8 +5,6 @@ import MobileLight from "/images/bg-mobile-light.jpg";
 import Moon from "/images/icon-moon.svg";
 import TodoContainer from "./components/TodoContainer";
 import Input from "./components/Input";
-import FilterContainer from "./components/FilterContainer";
-import Footer from "./components/Footer";
 
 type TodoType = {
   id: number;
@@ -22,8 +20,6 @@ function App() {
       <Input todos={todos} setTodos={setTodos} />
       <Main>
         <TodoContainer todos={todos} setTodos={setTodos} />
-        <FilterContainer />
-        <Footer />
       </Main>
     </>
   );

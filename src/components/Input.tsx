@@ -40,6 +40,10 @@ const Header = styled.header`
   align-items: center;
   padding: 46px 24px;
 
+  & img {
+    cursor: pointer;
+  }
+
   & .header-container {
     display: flex;
     justify-content: space-between;

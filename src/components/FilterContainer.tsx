@@ -1,14 +1,29 @@
 import styled from "styled-components";
+import { useState } from "react";
 
-export default function FilterContainer() {
+export default function FilterContainer({ setFilter, filter }) {
   return (
     <FilterBox>
-      <span>All</span>
-      <span>Active</span>
-      <span>Completed</span>
+      <FilterButton active={filter === "all"} onClick={() => setFilter("all")}>
+        All
+      </FilterButton>
+      <FilterButton
+        active={filter === "active"}
+        onClick={() => setFilter("active")}>
+        Active
+      </FilterButton>
+      <FilterButton
+        active={filter === "completed"}
+        onClick={() => setFilter("completed")}>
+        Completed
+      </FilterButton>
     </FilterBox>
   );
 }
+
+const FilterButton = styled.span`
+  color: ${(props) => (props.active ? "rgba(58, 124, 253, 1)" : "inherit")};
+`;
 
 const FilterBox = styled.div`
   display: flex;
@@ -25,8 +40,4 @@ const FilterBox = styled.div`
   cursor: pointer;
   box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
   margin-top: -16px;
-
-  & :hover {
-    color: rgba(58, 124, 253, 1);
-  }
 `;
