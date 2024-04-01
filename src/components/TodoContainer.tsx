@@ -9,35 +9,38 @@ interface TodoItemProps {
   completed: boolean;
 }
 
-export default function TodoContainer({ setTodos, todos }) {
-  const [filter, setFilter] = useState("all");
+type TodoType = {
+  id: number;
+  title: string;
+  completed: boolean;
+};
 
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") {
-      return !todo.completed;
-    } else if (filter === "completed") {
-      return todo.completed;
-    }
-    return true;
-  });
+type Filter = string;
+
+export default function TodoContainer({ setTodos, todos }) {
+  // filter useState
+  const [filter, setFilter] = useState<Filter>("all");
 
   // function for deleting todo
   const deleteTodo = (todoId: number): void => {
-    const newTodos = todos.filter((todo) => todoId !== todo.id);
+    const newTodos = todos.filter((todo: TodoType) => todoId !== todo.id);
 
     setTodos([...newTodos]);
   };
 
   // function for marking todo as completed or not completed
   const markTodo = (todoId: number) => {
+    // find/create object with exact todo that was clicked
     const markedTodo = todos.find((todo) => todoId === todo.id);
 
+    // create new todo object with todos completed value
     const updatedTodo = { ...markedTodo, completed: !markedTodo.completed };
-    // console.log(updatedTodo);
 
+    // /create the new Todos array with updated/new todo
     const newTodos = todos.map((todo) =>
       todo.id === todoId ? updatedTodo : todo
     );
+    // update the state of Todos
     setTodos(newTodos);
   };
 
@@ -51,6 +54,16 @@ export default function TodoContainer({ setTodos, todos }) {
   };
   // variable for tracking active todos
   const todoCount = todos.filter((todo) => !todo.completed).length;
+
+  // function for filtering
+  const filteredTodos = todos.filter((todo: TodoType) => {
+    if (filter === "active") {
+      return !todo.completed;
+    } else if (filter === "completed") {
+      return todo.completed;
+    }
+    return "all";
+  });
 
   return (
     <>
@@ -69,7 +82,11 @@ export default function TodoContainer({ setTodos, todos }) {
             </div>
 
             <div className="btn-container">
-              <img src={DeleteBtn} alt="" />
+              <img
+                onClick={() => deleteTodo(todo.id)}
+                src={DeleteBtn}
+                alt="delete icon x"
+              />
               <button onClick={() => deleteTodo(todo.id)}>X</button>
             </div>
           </SingleTodo>
@@ -92,7 +109,7 @@ const TodoList = styled.ul`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  background-color: rgba(37, 39, 61, 1);
+  background-color: ${(props) => props.theme.inputBackgroundColor};
   border-radius: 5px;
   box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -102,7 +119,7 @@ const TodoList = styled.ul`
 `;
 
 const SingleTodo = styled.li<TodoItemProps>`
-  border-bottom: 1px solid rgba(57, 58, 75, 1);
+  border-bottom: ${(props) => props.theme.circleColor};
   padding: 16px 20px;
   display: flex;
   justify-content: space-between;
@@ -114,7 +131,9 @@ const SingleTodo = styled.li<TodoItemProps>`
   letter-spacing: -0.1666666716337204px;
   text-align: left;
   color: ${(props) =>
-    props.completed ? "rgba(77, 80, 103, 1)" : "rgba(200, 203, 231, 1)"};
+    props.completed
+      ? props.theme.textColor.completedStyle
+      : props.theme.textColor.unCompletedStyle};
   text-decoration: ${(props) => (props.completed ? "line-through" : "")};
 
   & .container {
@@ -141,7 +160,7 @@ const SingleTodo = styled.li<TodoItemProps>`
     & .circle {
       width: 20px;
       height: 20px;
-      border: 1px solid rgba(57, 58, 75, 1);
+      border: ${(props) => props.theme.circleColor};
       border-radius: 50%;
       position: absolute;
       top: -3px;
@@ -175,9 +194,9 @@ const SummaryContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(37, 39, 61, 1);
+  background: ${(props) => props.theme.inputBackgroundColor};
   border-radius: 5px;
-  color: rgba(91, 94, 126, 1);
+  color: ${(props) => props.theme.summaryTextColor};
   font-size: 12px;
   line-height: 12px;
   letter-spacing: -0.1666666716337204px;

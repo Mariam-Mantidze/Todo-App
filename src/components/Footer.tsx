@@ -9,6 +9,6 @@ const FooterContainer = styled.footer`
   line-height: 14px;
   letter-spacing: -0.1944444477558136px;
   text-align: center;
-  color: rgba(91, 94, 126, 1);
+  color: ${(props) => props.theme.summaryTextColor};
   margin-top: 40px;
 `;

@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import MobileDarkTheme from "/images/bg-mobile-dark.jpg";
 import Sun from "/images/icon-sun.svg";
+import Moon from "/images/icon-moon.svg";
+import { useState } from "react";
 
-export default function Input({ todos, setTodos }) {
+export default function Input({ todos, setTodos, toggleTheme }) {
   const addTodo = (e: KeyboardEvent<HTMLInputElement>): void => {
     const inputElement = e.target as HTMLInputElement;
     if (e.key == "Enter" && inputElement.value.trim() !== "") {
@@ -18,7 +20,7 @@ export default function Input({ todos, setTodos }) {
     <Header>
       <div className="header-container">
         <h1>Todo</h1>
-        <img src={Sun} alt="" />
+        <img onClick={toggleTheme} src={Sun} alt="sun icon" />
       </div>
       <InputContainer>
         <div className="circle"></div>
@@ -33,7 +35,7 @@ export default function Input({ todos, setTodos }) {
 }
 
 const Header = styled.header`
-  background: url(${MobileDarkTheme});
+  background: ${(props) => props.theme.headerImg};
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -67,7 +69,7 @@ const InputContainer = styled.div`
   & .circle {
     width: 20px;
     height: 20px;
-    border: 1px solid rgba(57, 58, 75, 1);
+    border: ${(props) => props.theme.circleColor};
     border-radius: 50%;
     position: absolute;
     top: 27%;
@@ -76,7 +78,7 @@ const InputContainer = styled.div`
 `;
 
 const EnterTodo = styled.input`
-  background: rgba(37, 39, 61, 1);
+  background: ${(props) => props.theme.inputBackgroundColor};
   padding: 18px 54px;
   width: 327px;
   border-radius: 5px;
@@ -87,5 +89,5 @@ const EnterTodo = styled.input`
   line-height: 12px;
   letter-spacing: -0.1666666716337204px;
   text-align: left;
-  color: rgba(200, 203, 231, 1);
+  color: ${(props) => props.theme.inputColor};
 `;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
+
+type Active = string;
 
 export default function FilterContainer({ setFilter, filter }) {
   return (
@@ -22,7 +23,10 @@ export default function FilterContainer({ setFilter, filter }) {
 }
 
 const FilterButton = styled.span`
-  color: ${(props) => (props.active ? "rgba(58, 124, 253, 1)" : "inherit")};
+  color: ${(props) =>
+    props.active
+      ? props.theme.filterActiveColor
+      : props.theme.filterInactiveColor};
 `;
 
 const FilterBox = styled.div`
@@ -35,7 +39,7 @@ const FilterBox = styled.div`
   letter-spacing: -0.1944444477558136px;
 
   padding: 15px 80px;
-  background-color: rgba(37, 39, 61, 1);
+  background-color: ${(props) => props.theme.inputBackgroundColor};
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);

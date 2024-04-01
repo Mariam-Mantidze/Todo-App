@@ -1,10 +1,11 @@
 import { useState, KeyboardEvent } from "react";
 import styled from "styled-components";
 import "./App.css";
-import MobileLight from "/images/bg-mobile-light.jpg";
-import Moon from "/images/icon-moon.svg";
 import TodoContainer from "./components/TodoContainer";
 import Input from "./components/Input";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./themes/themes";
+import GlobalStyles from "./components/GlobalStyles";
 
 type TodoType = {
   id: number;
@@ -14,13 +15,21 @@ type TodoType = {
 
 function App() {
   const [todos, setTodos] = useState<TodoType[]>([]);
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   return (
     <>
-      <Input todos={todos} setTodos={setTodos} />
-      <Main>
-        <TodoContainer todos={todos} setTodos={setTodos} />
-      </Main>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+        <GlobalStyles />
+        <Input toggleTheme={toggleTheme} todos={todos} setTodos={setTodos} />
+        <Main>
+          <TodoContainer todos={todos} setTodos={setTodos} />
+        </Main>
+      </ThemeProvider>
     </>
   );
 }
