@@ -11,7 +11,7 @@ li {
   list-style: none;
 }
 body {
-  background-color: ${(props) => props.theme.backGroudColor};
+  background-color: ${(props) => props.theme.backgroundColor};
   font-family: "Josefin Sans", sans-serif;
   height: 100dvh;
 }

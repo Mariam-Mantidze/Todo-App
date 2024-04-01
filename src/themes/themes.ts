@@ -11,6 +11,7 @@ export const lightTheme = {
   headerImg: "url('/images/bg-mobile-light.jpg')",
   filterActiveColor: "rgba(58, 124, 253, 1)",
   filterInactiveColor: "rgba(148, 149, 165, 1)",
+  boxShadow: "0px 35px 50px -15px rgba(194, 195, 214, 0.5)",
 };
 
 export const darkTheme = {

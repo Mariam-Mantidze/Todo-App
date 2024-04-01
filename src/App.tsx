@@ -25,7 +25,12 @@ function App() {
     <>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalStyles />
-        <Input toggleTheme={toggleTheme} todos={todos} setTodos={setTodos} />
+        <Input
+          toggleTheme={toggleTheme}
+          theme={theme}
+          todos={todos}
+          setTodos={setTodos}
+        />
         <Main>
           <TodoContainer todos={todos} setTodos={setTodos} />
         </Main>

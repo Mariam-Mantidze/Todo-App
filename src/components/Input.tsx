@@ -4,7 +4,7 @@ import Sun from "/images/icon-sun.svg";
 import Moon from "/images/icon-moon.svg";
 import { useState } from "react";
 
-export default function Input({ todos, setTodos, toggleTheme }) {
+export default function Input({ todos, setTodos, toggleTheme, theme }) {
   const addTodo = (e: KeyboardEvent<HTMLInputElement>): void => {
     const inputElement = e.target as HTMLInputElement;
     if (e.key == "Enter" && inputElement.value.trim() !== "") {
@@ -20,7 +20,11 @@ export default function Input({ todos, setTodos, toggleTheme }) {
     <Header>
       <div className="header-container">
         <h1>Todo</h1>
-        <img onClick={toggleTheme} src={Sun} alt="sun icon" />
+        <img
+          onClick={toggleTheme}
+          src={theme === "light" ? Moon : Sun}
+          alt={theme === "dark" ? "Sun Icon" : "Moon Icon"}
+        />
       </div>
       <InputContainer>
         <div className="circle"></div>
@@ -83,6 +87,7 @@ const EnterTodo = styled.input`
   width: 327px;
   border-radius: 5px;
   border: none;
+  box-shadow: ${(props) => props.theme.boxShadow};
 
   font-size: 12px;
   font-weight: 400;

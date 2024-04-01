@@ -111,7 +111,7 @@ const TodoList = styled.ul`
   margin-top: 16px;
   background-color: ${(props) => props.theme.inputBackgroundColor};
   border-radius: 5px;
-  box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: ${(props) => props.theme.boxShadow};
   position: relative;
   top: -40px;
 
