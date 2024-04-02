@@ -110,6 +110,10 @@ const EnterTodo = styled.input`
   text-align: left;
   color: ${(props) => props.theme.inputColor};
 
+  &::placeholder {
+    color: ${(props) => props.theme.placeHolder};
+  }
+
   @media (min-width: 1000px) {
     width: 540px;
     padding: 20px 64px;

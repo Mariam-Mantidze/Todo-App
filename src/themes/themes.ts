@@ -14,6 +14,7 @@ export const lightTheme = {
   filterInactiveColor: "rgba(148, 149, 165, 1)",
   boxShadow: "0px 35px 50px -15px rgba(194, 195, 214, 0.5)",
   textHover: "rgba(73, 76, 107, 1) ",
+  placeHolder: "rgba(148, 149, 165, 1)",
 };
 
 export const darkTheme = {
@@ -32,5 +33,6 @@ export const darkTheme = {
   filterActiveColor: "rgba(58, 124, 253, 1)",
   filterInactiveColor: "rgba(91, 94, 126, 1)",
   boxShadow: "0px 35px 50px -15px rgba(0, 0, 0, 0.5)",
-  textHover: "rgba(227, 228, 241, 1);",
+  textHover: "rgba(227, 228, 241, 1)",
+  placeHolder: "rgba(118, 121, 146, 1)",
 };

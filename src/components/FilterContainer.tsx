@@ -36,7 +36,6 @@ const FilterButton = styled.span`
 const FilterBox = styled.div`
   display: flex;
   gap: 19px;
-  color: rgba(91, 94, 126, 1);
   font-size: 14px;
   font-weight: 700;
   line-height: 14px;
@@ -47,4 +46,12 @@ const FilterBox = styled.div`
   border-radius: 5px;
   cursor: pointer;
   box-shadow: ${(props) => props.theme.boxShadow};
+
+  @media (min-width: 1000px) {
+    position: relative;
+    box-shadow: none;
+    background: none;
+    bottom: 73px;
+    padding: 0;
+  }
 `;
