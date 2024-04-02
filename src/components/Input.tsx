@@ -2,7 +2,6 @@ import styled from "styled-components";
 import MobileDarkTheme from "/images/bg-mobile-dark.jpg";
 import Sun from "/images/icon-sun.svg";
 import Moon from "/images/icon-moon.svg";
-import { useState } from "react";
 
 export default function Input({ todos, setTodos, toggleTheme, theme }) {
   const addTodo = (e: KeyboardEvent<HTMLInputElement>): void => {
@@ -46,6 +45,10 @@ const Header = styled.header`
   align-items: center;
   padding: 46px 24px;
 
+  @media (min-width: 768px) {
+    background: ${(props) => props.theme.headerDesktop};
+  }
+
   & img {
     cursor: pointer;
   }
@@ -55,6 +58,10 @@ const Header = styled.header`
     justify-content: space-between;
     align-items: center;
     width: 327px;
+
+    @media (min-width: 1000px) {
+      width: 541px;
+    }
 
     & h1 {
       color: rgba(255, 255, 255, 1);
@@ -68,7 +75,7 @@ const Header = styled.header`
 const InputContainer = styled.div`
   position: relative;
   margin-top: 40px;
-  box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: ${(props) => props.theme.boxShadow};
 
   & .circle {
     width: 20px;
@@ -78,6 +85,13 @@ const InputContainer = styled.div`
     position: absolute;
     top: 27%;
     left: 20px;
+
+    @media (min-width: 1000px) {
+      width: 24px;
+      height: 24px;
+      left: 24px;
+      top: 29%;
+    }
   }
 `;
 
@@ -95,6 +109,12 @@ const EnterTodo = styled.input`
   letter-spacing: -0.1666666716337204px;
   text-align: left;
   color: ${(props) => props.theme.inputColor};
+
+  @media (min-width: 1000px) {
+    width: 540px;
+    padding: 20px 64px;
+    font-size: 18px;
+  }
 
   &:focus {
     outline: none;
