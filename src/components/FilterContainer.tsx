@@ -1,8 +1,19 @@
 import styled from "styled-components";
 
-type Active = string;
+// type Active = string;
 
-export default function FilterContainer({ setFilter, filter }) {
+type FilterProps = {
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
+  filter: string;
+};
+
+type FilterButtonProps = {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+};
+
+export default function FilterContainer({ setFilter, filter }: FilterProps) {
   return (
     <FilterBox>
       <FilterButton active={filter === "all"} onClick={() => setFilter("all")}>
@@ -22,7 +33,7 @@ export default function FilterContainer({ setFilter, filter }) {
   );
 }
 
-const FilterButton = styled.span`
+const FilterButton = styled.span<FilterButtonProps>`
   color: ${(props) =>
     props.active
       ? props.theme.filterActiveColor

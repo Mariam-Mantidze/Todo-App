@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import TodoContainer from "./components/TodoContainer";
@@ -6,12 +6,7 @@ import Input from "./components/Input";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./themes/themes";
 import GlobalStyles from "./components/GlobalStyles";
-
-type TodoType = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+import { TodoType } from "./types/types";
 
 function App() {
   const [todos, setTodos] = useState<TodoType[]>([]);

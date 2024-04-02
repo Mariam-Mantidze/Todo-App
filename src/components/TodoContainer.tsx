@@ -4,20 +4,17 @@ import Checkbox from "/images/icon-check.svg";
 import DeleteBtn from "/images/icon-cross.svg";
 import FilterContainer from "./FilterContainer";
 import Footer from "./Footer";
+import { TodoType } from "../types/types";
+import { InputProps } from "../types/types";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 interface TodoItemProps {
   completed: boolean;
 }
 
-type TodoType = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
-
 type Filter = string;
 
-export default function TodoContainer({ setTodos, todos }) {
+export default function TodoContainer({ setTodos, todos }: InputProps) {
   // filter useState
   const [filter, setFilter] = useState<Filter>("all");
 
@@ -33,15 +30,16 @@ export default function TodoContainer({ setTodos, todos }) {
     // find/create object with exact todo that was clicked
     const markedTodo = todos.find((todo) => todoId === todo.id);
 
-    // create new todo object with todos completed value
-    const updatedTodo = { ...markedTodo, completed: !markedTodo.completed };
-
-    // /create the new Todos array with updated/new todo
-    const newTodos = todos.map((todo) =>
-      todo.id === todoId ? updatedTodo : todo
-    );
-    // update the state of Todos
-    setTodos(newTodos);
+    if (markedTodo) {
+      // create new todo object with todos completed value
+      const updatedTodo = { ...markedTodo, completed: !markedTodo.completed };
+      // /create the new Todos array with updated/new todo
+      const newTodos = todos.map((todo) =>
+        todo.id === todoId ? updatedTodo : todo
+      );
+      // update the state of Todos
+      setTodos(newTodos);
+    }
   };
 
   // function for clearing all the completed todos

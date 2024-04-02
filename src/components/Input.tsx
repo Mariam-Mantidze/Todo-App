@@ -1,9 +1,15 @@
 import styled from "styled-components";
-import MobileDarkTheme from "/images/bg-mobile-dark.jpg";
+import { KeyboardEvent } from "react";
 import Sun from "/images/icon-sun.svg";
 import Moon from "/images/icon-moon.svg";
+import { InputProps } from "../types/types";
 
-export default function Input({ todos, setTodos, toggleTheme, theme }) {
+export default function Input({
+  todos,
+  setTodos,
+  toggleTheme,
+  theme,
+}: InputProps) {
   const addTodo = (e: KeyboardEvent<HTMLInputElement>): void => {
     const inputElement = e.target as HTMLInputElement;
     if (e.key == "Enter" && inputElement.value.trim() !== "") {
