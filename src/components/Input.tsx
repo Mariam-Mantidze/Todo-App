@@ -95,4 +95,8 @@ const EnterTodo = styled.input`
   letter-spacing: -0.1666666716337204px;
   text-align: left;
   color: ${(props) => props.theme.inputColor};
+
+  &:focus {
+    outline: none;
+  }
 `;

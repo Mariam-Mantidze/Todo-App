@@ -27,6 +27,10 @@ const FilterButton = styled.span`
     props.active
       ? props.theme.filterActiveColor
       : props.theme.filterInactiveColor};
+
+  &:hover {
+    color: ${(props) => !props.active && props.theme.textHover};
+  }
 `;
 
 const FilterBox = styled.div`

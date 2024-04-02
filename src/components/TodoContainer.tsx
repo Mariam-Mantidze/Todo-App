@@ -135,6 +135,7 @@ const SingleTodo = styled.li<TodoItemProps>`
       ? props.theme.textColor.completedStyle
       : props.theme.textColor.unCompletedStyle};
   text-decoration: ${(props) => (props.completed ? "line-through" : "")};
+  cursor: pointer;
 
   & .container {
     display: flex;
@@ -203,5 +204,9 @@ const SummaryContainer = styled.div`
 
   & .clear-items {
     cursor: pointer;
+
+    &:hover {
+      color: ${(props) => props.theme.textHover};
+    }
   }
 `;
