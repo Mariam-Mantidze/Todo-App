@@ -6,6 +6,7 @@ import FilterContainer from "./FilterContainer";
 import Footer from "./Footer";
 import { TodoType } from "../types/types";
 import { InputProps } from "../types/types";
+import { Reorder } from "framer-motion";
 
 interface TodoItemProps {
   completed: boolean;
@@ -65,35 +66,39 @@ export default function TodoContainer({ setTodos, todos }: InputProps) {
   return (
     <>
       <TodoList>
-        {filteredTodos.map((todo) => (
-          <SingleTodo key={todo.id} completed={todo.completed}>
-            <div className="container">
-              <div className="circle"></div>
-              <img src={Checkbox} alt="checkbox" />
-              <input
-                onChange={() => markTodo(todo.id)}
-                type="checkbox"
-                name="completed"
-              />
-              {todo.title}
-            </div>
+        <Reorder.Group values={todos} onReorder={setTodos}>
+          {filteredTodos.map((todo) => (
+            <Reorder.Item value={todo} key={todo.id}>
+              <SingleTodo key={todo.id} completed={todo.completed}>
+                <div className="container">
+                  <div className="circle"></div>
+                  <img src={Checkbox} alt="checkbox" />
+                  <input
+                    onChange={() => markTodo(todo.id)}
+                    type="checkbox"
+                    name="completed"
+                  />
+                  {todo.title}
+                </div>
 
-            <div className="btn-container">
-              <img
-                onClick={() => deleteTodo(todo.id)}
-                src={DeleteBtn}
-                alt="delete icon x"
-              />
-              <button onClick={() => deleteTodo(todo.id)}>X</button>
-            </div>
-          </SingleTodo>
-        ))}
-        <SummaryContainer>
-          <span className="items-left">{todoCount} items left</span>
-          <span onClick={clearCompleted} className="clear-items">
-            Clear Completed
-          </span>
-        </SummaryContainer>
+                <div className="btn-container">
+                  <img
+                    onClick={() => deleteTodo(todo.id)}
+                    src={DeleteBtn}
+                    alt="delete icon x"
+                  />
+                  <button onClick={() => deleteTodo(todo.id)}>X</button>
+                </div>
+              </SingleTodo>
+            </Reorder.Item>
+          ))}
+          <SummaryContainer>
+            <span className="items-left">{todoCount} items left</span>
+            <span onClick={clearCompleted} className="clear-items">
+              Clear Completed
+            </span>
+          </SummaryContainer>
+        </Reorder.Group>
       </TodoList>
       <FilterContainer filter={filter} setFilter={setFilter} />
       <Footer />
