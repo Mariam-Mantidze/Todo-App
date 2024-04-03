@@ -45,6 +45,7 @@ export default function Input({
 
 const Header = styled.header`
   background: ${(props) => props.theme.headerImg};
+
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -53,6 +54,8 @@ const Header = styled.header`
 
   @media (min-width: 768px) {
     background: ${(props) => props.theme.headerDesktop};
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   & img {
