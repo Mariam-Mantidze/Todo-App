@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-// type Active = string;
-
 type FilterProps = {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   filter: string;

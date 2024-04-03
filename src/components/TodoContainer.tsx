@@ -6,7 +6,6 @@ import FilterContainer from "./FilterContainer";
 import Footer from "./Footer";
 import { TodoType } from "../types/types";
 import { InputProps } from "../types/types";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 interface TodoItemProps {
   completed: boolean;
