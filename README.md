@@ -18,6 +18,7 @@ Users should be able to:
 - Filter by all/active/complete todos
 - Clear all completed todos
 - Toggle light and dark mode
+- Drag and drop todos on vertical axis
 
 ### Screenshot
 
@@ -31,6 +32,7 @@ Users should be able to:
 - **Delete Tasks:** Users can delete tasks from the list by clicking on the "X" button next to each task.
 - **Clear Completed Tasks:** A "Clear Completed" button allows users to remove all tasks that have been marked as completed.
 - **Themes:** The application supports light and dark themes, which can be toggled by the user. This is my first experience working with themes in React, and it has been an exciting journey to learn how to dynamically change the appearance of the application.
+- **Reorder Tasks:** The drag-and-drop functionality, implemented with `Framer Motion`, enables users to reorder tasks in the list.
 
 ### Links
 
