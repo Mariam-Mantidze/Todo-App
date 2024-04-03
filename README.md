@@ -1,30 +1,60 @@
-# React + TypeScript + Vite
+# Frontend Mentor - Todo app solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This Todo List project is a React-based application that allows users to manage their daily tasks effectively. It is my first project using TypeScript, which has helped me gain a better understanding of type safety and best practices in a React environment. The application supports adding, marking, filtering, and deleting tasks, providing a comprehensive task management experience. Additionally, this project introduced me to working with themes in React, allowing for a customizable user interface.
 
-## Expanding the ESLint configuration
+### The challenge
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Users should be able to:
 
-- Configure the top-level `parserOptions` property like this:
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Add new todos to the list
+- Mark todos as complete
+- Delete todos from the list
+- Filter by all/active/complete todos
+- Clear all completed todos
+- Toggle light and dark mode
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Screenshot
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![](./design/active-states-light.jpg)
+
+## Features
+
+- **Add Tasks:** Users can add new tasks to the list by typing into the input field and pressing Enter.
+- **Mark Tasks as Completed:** Tasks can be marked as completed by clicking on the checkbox next to each task. This helps users keep track of their progress.
+- **Filter Tasks:** The application provides filter options (All, Active, Completed) to view tasks based on their status. This feature is implemented using React's state management, allowing for dynamic updating of the task list.
+- **Delete Tasks:** Users can delete tasks from the list by clicking on the "X" button next to each task.
+- **Clear Completed Tasks:** A "Clear Completed" button allows users to remove all tasks that have been marked as completed.
+- **Themes:** The application supports light and dark themes, which can be toggled by the user. This is my first experience working with themes in React, and it has been an exciting journey to learn how to dynamically change the appearance of the application.
+
+### Links
+
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+
+### Built with
+
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Styled Components](https://styled-components.com/) - For styles
+- TypeScript
+
+## What I Learned
+
+- **TypeScript in React:** This being my first project with TypeScript, I learned how to use types and interfaces to ensure type safety in my components and state management.
+- **State Management:** I gained a deeper understanding of managing state in React, especially when it comes to updating complex state structures like arrays of objects.
+- **Conditional Rendering:** I learned how to use conditional rendering to display different UI elements based on the state, such as showing active, completed, or all tasks.
+- **Event Handling:** I became more familiar with handling events in React, such as adding a new task, marking a task as completed, or deleting a task.
+- **Styled Components:** This project was my first experience with Styled Components for styling my React components. I learned how to create reusable styled components and dynamically change styles based on props.
+- **Themes:** I explored working with themes in React using Styled Components, which allowed me to switch between light and dark themes dynamically.
+
+## Future Improvements
+
+- **Drag and Drop:** Implementing drag and drop functionality to reorder tasks for better usability.
+- **Persistence:** Adding local storage or backend integration to persist tasks between sessions.
+- **Task Editing:** Allowing users to edit existing tasks to make updates easier.
+- **Animations:** Adding animations for task addition, deletion, and completion for a more engaging user experience.
